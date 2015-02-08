@@ -10,16 +10,16 @@ package model;
  */
 
 
-public class add_customer_model{
+public class customer_model{
     private String custID;
     private String custName;
     private String custAddress;
     private String custContect;
 
-    public add_customer_model() {
+    public customer_model() {
     }
 
-    public add_customer_model(String custID, String custName, String custAddress, String custContect) {
+    public customer_model(String custID, String custName, String custAddress, String custContect) {
         this.custID = custID;
         this.custName = custName;
         this.custAddress = custAddress;
