@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.customer_model;
 import validation.AutoGenerate;
+import validation.Validate;
 
 /**
  *
@@ -26,17 +27,20 @@ public class customer_view extends javax.swing.JFrame {
      */
     DefaultTableModel dtm_serch;
     DefaultTableModel dtm_update;
+    DefaultTableModel dtm_remove;
     
     public customer_view() {
         
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
-        
+        // auto increment the customer id 
         String id= AutoGenerate.getNextID("customer", "cust_id", "CUS");
         tbaddcust_txtid.setText(id);
+        
         dtm_serch=(DefaultTableModel)tbsearch_table.getModel();
         dtm_update=(DefaultTableModel)tbupdate_searchresulttable.getModel();
+        dtm_remove=(DefaultTableModel)tbremove_searchresulttable.getModel();
         
     }
 
@@ -64,6 +68,7 @@ public class customer_view extends javax.swing.JFrame {
         tbaddcust_txtcontect = new javax.swing.JTextField();
         tbcust_butclear = new javax.swing.JButton();
         tbcust_butadd = new javax.swing.JButton();
+        lbl_contact = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -89,7 +94,31 @@ public class customer_view extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         tbupdate_txtdisplaycontect = new javax.swing.JTextField();
         tbupdate_btnupdate = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        tbupdate_txtdisplayID = new javax.swing.JTextField();
+        tbupdate_txterror = new javax.swing.JLabel();
+        tbupdate_btnclear = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        tbremove_txtname = new javax.swing.JTextField();
+        tbremove_btnsearch = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
+        tbremove_searchresulttable = new javax.swing.JTable();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        tbremove_txtdisplayname = new javax.swing.JTextField();
+        jLabel23 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tbremove_txtdisplayaddress = new javax.swing.JTextArea();
+        jLabel24 = new javax.swing.JLabel();
+        tbremove_txtdisplaycontect = new javax.swing.JTextField();
+        tbremove_btnupdate = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        tbremove_txtdisplayID = new javax.swing.JTextField();
+        tbremove_btnclear = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +147,12 @@ public class customer_view extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbaddcust_txtaddress);
 
         jLabel6.setText("Contect No.");
+
+        tbaddcust_txtcontect.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbaddcust_txtcontectKeyReleased(evt);
+            }
+        });
 
         tbcust_butclear.setText("Clear");
         tbcust_butclear.addActionListener(new java.awt.event.ActionListener() {
@@ -162,11 +197,12 @@ public class customer_view extends javax.swing.JFrame {
                                 .addComponent(jLabel6))
                             .addGap(39, 39, 39)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(lbl_contact, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(tbaddcust_txtname)
                                 .addComponent(tbaddcust_txtid, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE)
                                 .addComponent(tbaddcust_txtcontect, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addContainerGap(284, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,11 +225,13 @@ public class customer_view extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tbaddcust_txtcontect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(69, 69, 69)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lbl_contact, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tbcust_butclear)
                     .addComponent(tbcust_butadd))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
 
         tbaddcust_txtid.getAccessibleContext().setAccessibleName("");
@@ -270,7 +308,7 @@ public class customer_view extends javax.swing.JFrame {
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel9)
                                         .addGap(358, 358, 358)))))
-                        .addGap(0, 279, Short.MAX_VALUE))
+                        .addGap(0, 284, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2)))
@@ -291,7 +329,7 @@ public class customer_view extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addContainerGap(346, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Search", jPanel2);
@@ -304,6 +342,17 @@ public class customer_view extends javax.swing.JFrame {
 
         jLabel11.setText("Customer Name");
 
+        tbupdate_txtname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbupdate_txtnameActionPerformed(evt);
+            }
+        });
+        tbupdate_txtname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbupdate_txtnameKeyReleased(evt);
+            }
+        });
+
         tbupdate_btnsearch.setText("Search");
         tbupdate_btnsearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -313,21 +362,21 @@ public class customer_view extends javax.swing.JFrame {
 
         tbupdate_searchresulttable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Customer Name", "Customer Address", "Customer Contect No."
+                "Customer ID", "Customer Name", "CustomerAddress", "Customer Contect No."
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -359,7 +408,30 @@ public class customer_view extends javax.swing.JFrame {
 
         jLabel16.setText("Customer Contect No.");
 
+        tbupdate_txtdisplaycontect.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbupdate_txtdisplaycontectKeyReleased(evt);
+            }
+        });
+
         tbupdate_btnupdate.setText("Update");
+        tbupdate_btnupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbupdate_btnupdateActionPerformed(evt);
+            }
+        });
+
+        jLabel17.setText("Customer ID");
+
+        tbupdate_txtdisplayID.setEditable(false);
+        tbupdate_txtdisplayID.setEnabled(false);
+
+        tbupdate_btnclear.setText("Clear");
+        tbupdate_btnclear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbupdate_btnclearActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -373,13 +445,17 @@ public class customer_view extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(tbupdate_btnsearch)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(tbupdate_btnclear)
+                                .addGap(18, 18, 18)
+                                .addComponent(tbupdate_btnsearch))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel12)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addGap(34, 34, 34)
-                                    .addComponent(tbupdate_txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                .addGap(341, 341, 341))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(34, 34, 34)
+                                .addComponent(tbupdate_txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
@@ -393,53 +469,270 @@ public class customer_view extends javax.swing.JFrame {
                                 .addComponent(tbupdate_btnupdate)
                                 .addGroup(jPanel3Layout.createSequentialGroup()
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel15)
+                                        .addComponent(jLabel14)
                                         .addComponent(jLabel16)
-                                        .addComponent(jLabel14))
-                                    .addGap(42, 42, 42)
+                                        .addComponent(jLabel15)
+                                        .addComponent(jLabel17))
+                                    .addGap(99, 99, 99)
                                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(tbupdate_txtdisplayname, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(tbupdate_txtdisplaycontect, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(171, Short.MAX_VALUE))))
+                                        .addComponent(tbupdate_txtdisplaycontect, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tbupdate_txtdisplayname, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tbupdate_txtdisplayID, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tbupdate_txterror, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(119, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(tbupdate_txtname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tbupdate_btnsearch)
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tbupdate_btnsearch)
+                    .addComponent(tbupdate_btnclear))
+                .addGap(10, 10, 10)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel13)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14)
-                    .addComponent(tbupdate_txtdisplayname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel17)
+                    .addComponent(tbupdate_txtdisplayID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tbupdate_txtdisplayname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(28, 28, 28)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tbupdate_txtdisplaycontect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel16)))
+                            .addComponent(jLabel16)
+                            .addComponent(tbupdate_txtdisplaycontect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel15))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                .addComponent(tbupdate_btnupdate)
-                .addGap(24, 24, 24))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tbupdate_txterror)
+                .addGap(7, 7, 7)
+                .addComponent(tbupdate_btnupdate))
         );
 
         jTabbedPane1.addTab("Update", jPanel3);
-        jTabbedPane1.addTab("tab4", jScrollPane5);
+
+        jPanel5.setPreferredSize(new java.awt.Dimension(800, 600));
+        jPanel5.setRequestFocusEnabled(false);
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel18.setText("Remove Customer ");
+
+        jLabel19.setText("Customer Name");
+
+        tbremove_txtname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbremove_txtnameActionPerformed(evt);
+            }
+        });
+
+        tbremove_btnsearch.setText("Search");
+        tbremove_btnsearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbremove_btnsearchActionPerformed(evt);
+            }
+        });
+
+        tbremove_searchresulttable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Customer ID", "Customer Name", "CustomerAddress", "Customer Contect No."
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbremove_searchresulttable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbremove_searchresulttableMouseClicked(evt);
+            }
+        });
+        jScrollPane5.setViewportView(tbremove_searchresulttable);
+
+        jLabel20.setText("Search Results");
+
+        jLabel21.setText("Selected Customer Details ");
+
+        jLabel22.setText("Cstomer Name");
+
+        tbremove_txtdisplayname.setEditable(false);
+        tbremove_txtdisplayname.setEnabled(false);
+
+        jLabel23.setText("Customer Address");
+
+        tbremove_txtdisplayaddress.setEditable(false);
+        tbremove_txtdisplayaddress.setColumns(20);
+        tbremove_txtdisplayaddress.setRows(5);
+        tbremove_txtdisplayaddress.setEnabled(false);
+        jScrollPane6.setViewportView(tbremove_txtdisplayaddress);
+
+        jLabel24.setText("Customer Contect No.");
+
+        tbremove_txtdisplaycontect.setEditable(false);
+        tbremove_txtdisplaycontect.setEnabled(false);
+
+        tbremove_btnupdate.setText("Remove");
+        tbremove_btnupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbremove_btnupdateActionPerformed(evt);
+            }
+        });
+
+        jLabel25.setText("Customer ID");
+
+        tbremove_txtdisplayID.setEditable(false);
+        tbremove_txtdisplayID.setEnabled(false);
+
+        tbremove_btnclear.setText("Clear");
+        tbremove_btnclear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tbremove_btnclearActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(269, 269, 269)
+                        .addComponent(jLabel18))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(tbremove_btnclear)
+                                .addGap(18, 18, 18)
+                                .addComponent(tbremove_btnsearch))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(341, 341, 341))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(34, 34, 34)
+                                .addComponent(tbremove_txtname, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(82, 82, 82)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel21)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(tbremove_btnupdate)
+                                .addGroup(jPanel5Layout.createSequentialGroup()
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel22)
+                                        .addComponent(jLabel24)
+                                        .addComponent(jLabel23)
+                                        .addComponent(jLabel25))
+                                    .addGap(99, 99, 99)
+                                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tbremove_txtdisplaycontect, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tbremove_txtdisplayname, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(tbremove_txtdisplayID, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(119, Short.MAX_VALUE))))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel18)
+                .addGap(27, 27, 27)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(tbremove_txtname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tbremove_btnsearch)
+                    .addComponent(tbremove_btnclear))
+                .addGap(10, 10, 10)
+                .addComponent(jLabel20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel21)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(tbremove_txtdisplayID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tbremove_txtdisplayname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel24)
+                            .addComponent(tbremove_txtdisplaycontect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel23))
+                .addGap(8, 8, 8)
+                .addComponent(tbremove_btnupdate)
+                .addGap(19, 19, 19))
+        );
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        jTabbedPane1.addTab("Remove", jPanel4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -448,36 +741,21 @@ public class customer_view extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(173, 173, 173)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(379, 379, 379))
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 805, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
         );
 
         jTabbedPane1.getAccessibleContext().setAccessibleName("Add Customer");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    // update table select
-    private void tbupdate_searchresulttableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbupdate_searchresulttableMouseClicked
-        // set values to text filleds form update table
-        int rowindex= tbupdate_searchresulttable.getSelectedRow();
-        tbupdate_txtdisplayname.setText(dtm_update.getValueAt(rowindex, 0) + "");
-        tbupdate_txtdisplayaddress.setText(dtm_update.getValueAt(rowindex, 1)+"");
-        tbupdate_txtdisplaycontect.setText(dtm_update.getValueAt(rowindex, 2)+"");
-    }//GEN-LAST:event_tbupdate_searchresulttableMouseClicked
-
-    private void tbupdate_btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbupdate_btnsearchActionPerformed
-        // TODO add your handling code here:
-
-        fillTableID(dtm_update, tbupdate_txtname.getText());
-    }//GEN-LAST:event_tbupdate_btnsearchActionPerformed
 
     //serch button in search tab
     private void tbsearch_btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbsearch_btnsearchActionPerformed
@@ -508,12 +786,34 @@ public class customer_view extends javax.swing.JFrame {
     private void tbcust_butaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbcust_butaddActionPerformed
         // TODO add your handling code here:
         customer_model add_customer= new customer_model();
-        add_customer.setCustID(tbaddcust_txtid.getText());
+        if(!tbaddcust_txtid.getText().equals("") && !tbaddcust_txtname.getText().equals("") && !tbaddcust_txtcontect.getText().equals("") && !tbaddcust_txtaddress.getText().equals("")){
+            System.out.println(tbaddcust_txtcontect.getText().length());
+            if(tbaddcust_txtcontect.getText().length()==10){
+                
+            add_customer.setCustID(tbaddcust_txtid.getText());
+            add_customer.setCustName(tbaddcust_txtname.getText());
+            add_customer.setCustAddress(tbaddcust_txtaddress.getText());
+            add_customer.setCustContect(tbaddcust_txtcontect.getText());
+            customer_controler.add_customer(add_customer);
+            tbaddcust_txtname.setText("");
+            tbaddcust_txtaddress.setText("");
+            tbaddcust_txtcontect.setText("");
+            String id= AutoGenerate.getNextID("customer", "cust_id", "C");
+            tbaddcust_txtid.setText(id);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Please Fill The Contect Number Correctly.");
+            }
+        }  
+        else{
+            JOptionPane.showMessageDialog(null, "Please Fill ALL The Fields.");
+        }
+        //add_customer.setCustID(tbaddcust_txtid.getText());
         //System.out.println("custID"+customer_view.getCustID());
-        add_customer.setCustName(tbaddcust_txtname.getText());
-        add_customer.setCustAddress(tbaddcust_txtaddress.getText());
-        add_customer.setCustContect(tbaddcust_txtcontect.getText());
-        customer_controler.add_customer(add_customer);
+        //add_customer.setCustName(tbaddcust_txtname.getText());
+        //add_customer.setCustAddress(tbaddcust_txtaddress.getText());
+        //add_customer.setCustContect(tbaddcust_txtcontect.getText());
+        
     }//GEN-LAST:event_tbcust_butaddActionPerformed
 
     private void tbcust_butclearKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbcust_butclearKeyPressed
@@ -526,11 +826,109 @@ public class customer_view extends javax.swing.JFrame {
         tbaddcust_txtname.setText("");
         tbaddcust_txtaddress.setText("");
         tbaddcust_txtcontect.setText("");
+        String id= AutoGenerate.getNextID("customer", "cust_id", "CUS");
+        tbaddcust_txtid.setText(id);
     }//GEN-LAST:event_tbcust_butclearActionPerformed
 
     private void tbaddcust_txtidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbaddcust_txtidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tbaddcust_txtidActionPerformed
+
+    // update table select
+    private void tbupdate_searchresulttableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbupdate_searchresulttableMouseClicked
+        // set values to text filleds form update table
+        int rowindex= tbupdate_searchresulttable.getSelectedRow();
+        tbupdate_txtdisplayID.setText(dtm_update.getValueAt(rowindex, 0)+"");
+        tbupdate_txtdisplayname.setText(dtm_update.getValueAt(rowindex, 1) + "");
+        tbupdate_txtdisplayaddress.setText(dtm_update.getValueAt(rowindex, 2)+"");
+        tbupdate_txtdisplaycontect.setText(dtm_update.getValueAt(rowindex, 3)+"");
+    }//GEN-LAST:event_tbupdate_searchresulttableMouseClicked
+    // search button on update panel
+    private void tbupdate_btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbupdate_btnsearchActionPerformed
+        // TODO add your handling code here:
+        fillTableID(dtm_update, tbupdate_txtname.getText());
+    }//GEN-LAST:event_tbupdate_btnsearchActionPerformed
+
+    private void tbupdate_txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbupdate_txtnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbupdate_txtnameActionPerformed
+    // update button 
+    private void tbupdate_btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbupdate_btnupdateActionPerformed
+        // TODO add your handling code here:
+        //send data to update database
+        customer_model cm= new customer_model();
+        cm.setCustID(tbupdate_txtdisplayID.getText());
+        cm.setCustName(tbupdate_txtdisplayname.getText());
+        cm.setCustAddress(tbupdate_txtdisplayaddress.getText());
+        cm.setCustContect(tbupdate_txtdisplaycontect.getText());
+        customer_controler.update_customer_details(cm);
+        tbupdate_txtdisplayID.setText("");
+        tbupdate_txtdisplayname.setText("");
+        tbupdate_txtdisplayaddress.setText("");
+        tbupdate_txtdisplaycontect.setText("");       
+    }//GEN-LAST:event_tbupdate_btnupdateActionPerformed
+
+    private void tbremove_txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbremove_txtnameActionPerformed
+        // TODO add your handling code here:
+        fillTableID(dtm_remove, tbremove_txtname.getText());
+    }//GEN-LAST:event_tbremove_txtnameActionPerformed
+    // search button in remove panel
+    private void tbremove_btnsearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbremove_btnsearchActionPerformed
+        // TODO add your handling code here:
+        fillTableID(dtm_remove, tbremove_txtname.getText());
+        
+    }//GEN-LAST:event_tbremove_btnsearchActionPerformed
+    // search result table in remove panel
+    private void tbremove_searchresulttableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbremove_searchresulttableMouseClicked
+        // TODO add your handling code here:
+        // set values to text filleds form update table
+        int rowindex= tbremove_searchresulttable.getSelectedRow();
+        tbremove_txtdisplayID.setText(dtm_remove.getValueAt(rowindex, 0)+"");
+        tbremove_txtdisplayname.setText(dtm_remove.getValueAt(rowindex, 1) + "");
+        tbremove_txtdisplayaddress.setText(dtm_remove.getValueAt(rowindex, 2)+"");
+        tbremove_txtdisplaycontect.setText(dtm_remove.getValueAt(rowindex, 3)+"");        
+    }//GEN-LAST:event_tbremove_searchresulttableMouseClicked
+    // remove button
+    private void tbremove_btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbremove_btnupdateActionPerformed
+        // TODO add your handling code here:
+        customer_model cm= new customer_model();
+        cm.setCustID(tbremove_txtdisplayID.getText());
+        cm.setCustName(tbremove_txtdisplayname.getText());
+        cm.setCustAddress(tbremove_txtdisplayaddress.getText());
+        cm.setCustContect(tbremove_txtdisplaycontect.getText());
+        customer_controler.remove_customer_details(cm);
+        tbremove_txtdisplayID.setText("");
+        tbremove_txtdisplayname.setText("");
+        tbremove_txtdisplayaddress.setText("");
+        tbremove_txtdisplaycontect.setText("");
+    }//GEN-LAST:event_tbremove_btnupdateActionPerformed
+
+    private void tbaddcust_txtcontectKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbaddcust_txtcontectKeyReleased
+        // TODO add your handling code here:
+        Validate.ValidateTP(tbaddcust_txtcontect, lbl_contact);
+        
+    }//GEN-LAST:event_tbaddcust_txtcontectKeyReleased
+    // contect textbox update panel(key release) 
+    private void tbupdate_txtdisplaycontectKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbupdate_txtdisplaycontectKeyReleased
+        // TODO add your handling code here:
+        Validate.ValidateTP(tbupdate_txtdisplaycontect, tbupdate_txterror);
+    }//GEN-LAST:event_tbupdate_txtdisplaycontectKeyReleased
+    // customer name text feild in update panel
+    private void tbupdate_txtnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbupdate_txtnameKeyReleased
+        // TODO add your handling code here:
+        // call for search customer details
+        fillTableID(dtm_update, tbupdate_txtname.getText());      
+    }//GEN-LAST:event_tbupdate_txtnameKeyReleased
+    // clear btton in update panel
+    private void tbupdate_btnclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbupdate_btnclearActionPerformed
+        // TODO add your handling code here:
+        tbupdate_txtname.setText("");
+    }//GEN-LAST:event_tbupdate_btnclearActionPerformed
+    // clear button in remove panel
+    private void tbremove_btnclearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbremove_btnclearActionPerformed
+        // TODO add your handling code here:
+        tbremove_txtname.setText("");
+    }//GEN-LAST:event_tbremove_btnclearActionPerformed
     
    
     //fil the table using database data
@@ -544,7 +942,7 @@ public class customer_view extends javax.swing.JFrame {
             ArrayList<customer_model> ar = customer_controler.get_customer_details(custname);
             for (int i = 0; i < ar.size(); i++) {
                 customer_model cm = ar.get(i);
-                String[] rowData = {cm.getCustName(), cm.getCustAddress(), cm.getCustContect()};
+                String[] rowData = {cm.getCustID(), cm.getCustName(), cm.getCustAddress(), cm.getCustContect()};
                 dtm.addRow(rowData); 
             }
         } catch (ClassNotFoundException ex) {
@@ -600,7 +998,16 @@ public class customer_view extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -611,27 +1018,43 @@ public class customer_view extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lbl_contact;
     private javax.swing.JTextArea tbaddcust_txtaddress;
     private javax.swing.JTextField tbaddcust_txtcontect;
     private javax.swing.JTextField tbaddcust_txtid;
     private javax.swing.JTextField tbaddcust_txtname;
     private javax.swing.JButton tbcust_butadd;
     private javax.swing.JButton tbcust_butclear;
+    private javax.swing.JButton tbremove_btnclear;
+    private javax.swing.JButton tbremove_btnsearch;
+    private javax.swing.JButton tbremove_btnupdate;
+    private javax.swing.JTable tbremove_searchresulttable;
+    private javax.swing.JTextField tbremove_txtdisplayID;
+    private javax.swing.JTextArea tbremove_txtdisplayaddress;
+    private javax.swing.JTextField tbremove_txtdisplaycontect;
+    private javax.swing.JTextField tbremove_txtdisplayname;
+    private javax.swing.JTextField tbremove_txtname;
     private javax.swing.JButton tbsearch_btnsearch;
     private javax.swing.JTable tbsearch_table;
     private javax.swing.JTextField tbsearch_txtname;
+    private javax.swing.JButton tbupdate_btnclear;
     private javax.swing.JButton tbupdate_btnsearch;
     private javax.swing.JButton tbupdate_btnupdate;
     private javax.swing.JTable tbupdate_searchresulttable;
+    private javax.swing.JTextField tbupdate_txtdisplayID;
     private javax.swing.JTextArea tbupdate_txtdisplayaddress;
     private javax.swing.JTextField tbupdate_txtdisplaycontect;
     private javax.swing.JTextField tbupdate_txtdisplayname;
+    private javax.swing.JLabel tbupdate_txterror;
     private javax.swing.JTextField tbupdate_txtname;
     // End of variables declaration//GEN-END:variables
 }

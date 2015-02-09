@@ -49,4 +49,36 @@ public class customer_controler {
         }
         return arrayList;
     }
+    
+    public static void update_customer_details(customer_model cm){
+        try{
+            Connection connection=DBConnection.getConnection();
+            String update_customer_quary="UPDATE customer SET cust_name='"+cm.getCustName()+"' , cust_address='"+cm.getCustAddress()+"' , cust_contect='"+cm.getCustContect()+"' WHERE cust_id='"+cm.getCustID()+"' ";
+            int res = DBHandel.setData(connection, update_customer_quary);
+            
+            if(res !=0){
+                JOptionPane.showMessageDialog(null, "Customer Updated successfully");
+            } 
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Customer Update Fail");
+        }
+    }
+    
+        public static void remove_customer_details(customer_model cm){
+        try{
+            Connection connection=DBConnection.getConnection();
+            String remove_customer_quary="DELETE FROM customer WHERE cust_id='"+cm.getCustID()+"'";
+            int res = DBHandel.setData(connection, remove_customer_quary);
+            
+            if(res !=0){
+                JOptionPane.showMessageDialog(null, "Customer Removed successfully");
+            } 
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Customer Remove Fail");
+        }
+    }
+    
+    
 }
