@@ -15,7 +15,7 @@ import java.sql.SQLException;
  */
 public class DBConnection {
 
-     private String url="jdbc:mysql://localhost/sakura_hw";
+    private String url="jdbc:mysql://localhost/sakura_hd";
     private String user="root";
     private String pass="";
     

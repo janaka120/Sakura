@@ -17,7 +17,9 @@ import model.customer_model;
  */
 public class customer_controler {
     public static void add_customer(customer_model a){
+        
         try{
+            
             Connection connection=DBConnection.getConnection();
             String add_customer_quary="INSERT INTO customer VALUES ('"+a.getCustID()+" ',' "+a.getCustName()+" ',' "+a.getCustAddress()+" ',' "+a.getCustContect()+"')";
             int res = DBHandel.setData(connection, add_customer_quary);
