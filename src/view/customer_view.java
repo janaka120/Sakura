@@ -42,6 +42,8 @@ public class customer_view extends javax.swing.JFrame {
         dtm_update=(DefaultTableModel)tbupdate_searchresulttable.getModel();
         dtm_remove=(DefaultTableModel)tbremove_searchresulttable.getModel();
         
+        
+        
     }
 
     /**
@@ -246,6 +248,11 @@ public class customer_view extends javax.swing.JFrame {
         tbsearch_txtname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tbsearch_txtnameActionPerformed(evt);
+            }
+        });
+        tbsearch_txtname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbsearch_txtnameKeyReleased(evt);
             }
         });
 
@@ -539,6 +546,11 @@ public class customer_view extends javax.swing.JFrame {
                 tbremove_txtnameActionPerformed(evt);
             }
         });
+        tbremove_txtname.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbremove_txtnameKeyReleased(evt);
+            }
+        });
 
         tbremove_btnsearch.setText("Search");
         tbremove_btnsearch.addActionListener(new java.awt.event.ActionListener() {
@@ -780,6 +792,8 @@ public class customer_view extends javax.swing.JFrame {
 
     private void tbsearch_txtnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbsearch_txtnameActionPerformed
         // TODO add your handling code here:
+        fillTableID(dtm_serch,tbsearch_txtname.getText());
+        
     }//GEN-LAST:event_tbsearch_txtnameActionPerformed
 
 // add customer details.........................................................................
@@ -929,6 +943,16 @@ public class customer_view extends javax.swing.JFrame {
         // TODO add your handling code here:
         tbremove_txtname.setText("");
     }//GEN-LAST:event_tbremove_btnclearActionPerformed
+
+    private void tbsearch_txtnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbsearch_txtnameKeyReleased
+        // TODO add your handling code here:
+        fillTableID(dtm_serch,tbsearch_txtname.getText());      
+    }//GEN-LAST:event_tbsearch_txtnameKeyReleased
+
+    private void tbremove_txtnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbremove_txtnameKeyReleased
+        // TODO add your handling code here:
+         fillTableID(dtm_remove, tbremove_txtname.getText());      
+    }//GEN-LAST:event_tbremove_txtnameKeyReleased
     
    
     //fil the table using database data
@@ -945,10 +969,6 @@ public class customer_view extends javax.swing.JFrame {
                 String[] rowData = {cm.getCustID(), cm.getCustName(), cm.getCustAddress(), cm.getCustContect()};
                 dtm.addRow(rowData); 
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(customer_view.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(customer_view.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
             Logger.getLogger(customer_view.class.getName()).log(Level.SEVERE, null, ex);
         }

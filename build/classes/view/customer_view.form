@@ -312,6 +312,7 @@
             <Component class="javax.swing.JTextField" name="tbsearch_txtname">
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbsearch_txtnameActionPerformed"/>
+                <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbsearch_txtnameKeyReleased"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="tbsearch_btnsearch">
@@ -834,6 +835,7 @@
                 <Component class="javax.swing.JTextField" name="tbremove_txtname">
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tbremove_txtnameActionPerformed"/>
+                    <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbremove_txtnameKeyReleased"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="tbremove_btnsearch">
