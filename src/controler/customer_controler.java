@@ -40,7 +40,7 @@ public class customer_controler {
     
     public static ArrayList<customer_model> get_customer_details(String name) {
         try {
-            System.out.println("string"+name);
+            //System.out.println("string"+name);
             String get_customer_sql="SELECT * FROM customer WHERE cust_name LIKE '% "+ name + "%'";
             Connection connection=DBConnection.getConnection();
             ResultSet resultSet=null;
@@ -51,7 +51,7 @@ public class customer_controler {
                 System.out.println("no data");
             }else{
                 System.out.println("...");
-            }
+            
             
             
             while(resultSet.next()){
@@ -65,13 +65,14 @@ public class customer_controler {
                 arrayList.add(cust_model);
             }
             return arrayList;
-            
+        }
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(customer_controler.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(customer_controler.class.getName()).log(Level.SEVERE, null, ex);
         }catch (Exception ex) {
                 Logger.getLogger(customer_controler.class.getName()).log(Level.SEVERE, null, ex);
+                System.out.println(ex);
             }
         return null;
     }
