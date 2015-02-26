@@ -943,12 +943,12 @@ public class customer_view extends javax.swing.JFrame {
         // TODO add your handling code here:
         tbremove_txtname.setText("");
     }//GEN-LAST:event_tbremove_btnclearActionPerformed
-
+    // search tab customer name txt
     private void tbsearch_txtnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbsearch_txtnameKeyReleased
         // TODO add your handling code here:
         fillTableID(dtm_serch,tbsearch_txtname.getText());      
     }//GEN-LAST:event_tbsearch_txtnameKeyReleased
-
+    // delete tab customer txt
     private void tbremove_txtnameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbremove_txtnameKeyReleased
         // TODO add your handling code here:
          fillTableID(dtm_remove, tbremove_txtname.getText());      
